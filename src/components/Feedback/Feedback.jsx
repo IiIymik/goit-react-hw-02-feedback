@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Title, Button, TitleList, List, Item } from './Feedback.styles'
+import { Title, Button, TitleList, List, Item } from './Feedback.styled'
 
 
 export class Feedback extends Component {
