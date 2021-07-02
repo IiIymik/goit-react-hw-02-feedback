@@ -18,24 +18,26 @@ export class Feedback extends Component {
     }
     incrementStatistics = (e) => {
         const { name } = e.target;
-        console.log(this.state.total);
         this.setState((prevState) => ({
             [name]: prevState[name] + 1,
-        }));   
+        }));
+
+        this.countTotalFeedback();
     }
 
-    countTotalFeedback=(e)=> {
-        console.log(e)
-     
+    countTotalFeedback = () => {
+        const { good, neutral, bad } = this.state;
+        const totalCommit = good + neutral + bad;
+        // 
     }
     countPositiveFeedbackPercentage() {
         // 
     }
     render() {
         const { good, neutral, bad, total, positivePercentage, } = this.state;
-        // const total = good + neutral + bad;
+        this.countTotalFeedback()
         // const positive = Math.round(good / total * 100);
-        // console.log(positive)
+        // console.log(totalCommit)
         return (
             <div>
                 <Title>Please leave feedback</Title>
@@ -47,7 +49,7 @@ export class Feedback extends Component {
                     <Item>Good: {good}</Item>
                     <Item>Neutral: {neutral}</Item>
                     <Item>Bad: {bad}</Item>
-                    <Item onChange={this.countTotalFeedback}>Total: {total}</Item>
+                    <Item>Total: {total}</Item>
                     <Item>Positive feedback: {positivePercentage}%</Item>
                 </List>
             </div>
