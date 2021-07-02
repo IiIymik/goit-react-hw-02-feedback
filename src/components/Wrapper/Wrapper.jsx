@@ -6,7 +6,7 @@ import Feedback from '../Feedback/Feedback';
 function Wrapper() {
     return (
         <Container>
-            <Feedback/>
+            <Feedback initialValue={0}/>
         </Container>
     )
 }
