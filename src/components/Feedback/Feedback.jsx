@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Title, Button, TitleList, List, Item } from './Feedback.styled'
-
+import Statistics from '../Statistics/Statistics';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
+import Notification from '../Notification/Notification';
 
 export class Feedback extends Component {
     static defaultProps = {
@@ -13,45 +14,26 @@ export class Feedback extends Component {
         good: this.props.initialValue,
         neutral: this.props.initialValue,
         bad: this.props.initialValue,
-        total: this.props.initialValue,
-        positivePercentage: this.props.initialValue,
     }
+    
     incrementStatistics = (e) => {
         const { name } = e.target;
         this.setState((prevState) => ({
             [name]: prevState[name] + 1,
         }));
-
-        this.countTotalFeedback();
     }
 
-    countTotalFeedback = () => {
-        const { good, neutral, bad } = this.state;
-        const totalCommit = good + neutral + bad;
-        // 
-    }
-    countPositiveFeedbackPercentage() {
-        // 
-    }
+
     render() {
-        const { good, neutral, bad, total, positivePercentage, } = this.state;
-        this.countTotalFeedback()
-        // const positive = Math.round(good / total * 100);
-        // console.log(totalCommit)
+        const { good, neutral, bad } = this.state;
+        const totalSum = good + bad + neutral;
+        const positiveFeed = Math.round(good / totalSum * 100);
+    
         return (
             <div>
-                <Title>Please leave feedback</Title>
-                <Button name="good" onClick={this.incrementStatistics}>Good</Button>
-                <Button name="neutral" onClick={this.incrementStatistics}>Neutral</Button>
-                <Button name="bad" onClick={this.incrementStatistics}>Bad</Button>
-                <TitleList>Statistics</TitleList>
-                <List>
-                    <Item>Good: {good}</Item>
-                    <Item>Neutral: {neutral}</Item>
-                    <Item>Bad: {bad}</Item>
-                    <Item>Total: {total}</Item>
-                    <Item>Positive feedback: {positivePercentage}%</Item>
-                </List>
+                <FeedbackOptions onLeaveFeedback={this.incrementStatistics}></FeedbackOptions>
+                {totalSum < 1 && <Notification message="No feedback given"/> }
+                <Statistics good={good} neutral={neutral} bad={bad} total={totalSum} positivePercentage={positiveFeed}></Statistics>
             </div>
         )
     }
