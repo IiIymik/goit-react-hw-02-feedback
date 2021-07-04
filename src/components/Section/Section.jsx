@@ -1,11 +1,11 @@
 import React from 'react'
-import { Title } from './Section.styled.js';
+import { Title, Container } from './Section.styled.js';
 
 function Section({title, children}) {
-    return <div>
+    return <Container>
             <Title>{title}</Title>
             {children}
-        </div>
+        </Container>
            
     
 }

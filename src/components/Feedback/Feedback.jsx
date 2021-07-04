@@ -14,6 +14,7 @@ export class Feedback extends Component {
         good: this.props.initialValue,
         neutral: this.props.initialValue,
         bad: this.props.initialValue,
+        visible: false,
     }
     
     incrementStatistics = (e) => {
@@ -21,19 +22,23 @@ export class Feedback extends Component {
         this.setState((prevState) => ({
             [name]: prevState[name] + 1,
         }));
+        this.changeVisible();
     }
 
-
+    changeVisible = () => {
+        this.setState({visible: true})
+    }
+  
     render() {
-        const { good, neutral, bad } = this.state;
+        const { good, neutral, bad, visible} = this.state;
         const totalSum = good + bad + neutral;
         const positiveFeed = Math.round(good / totalSum * 100);
     
         return (
             <div>
                 <FeedbackOptions onLeaveFeedback={this.incrementStatistics}></FeedbackOptions>
-                {totalSum < 1 && <Notification message="No feedback given"/> }
-                <Statistics good={good} neutral={neutral} bad={bad} total={totalSum} positivePercentage={positiveFeed}></Statistics>
+                {!visible && <Notification message="No feedback given"/> }
+                { visible && <Statistics good={good} neutral={neutral} bad={bad} total={totalSum} positivePercentage={positiveFeed}/>}
             </div>
         )
     }

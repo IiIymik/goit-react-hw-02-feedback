@@ -1,10 +1,11 @@
 import React from 'react'
+import {Container, Title} from './Notification.styled.js'
 
 function Notification({message}) {
     return (
-        <div>
-            {message}
-        </div>
+        <Container>
+            <Title>{message}</Title>
+        </Container>
     )
 }
 
