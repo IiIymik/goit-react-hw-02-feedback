@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { List,Item} from './Statistics.styled.js'
 import Section from '../Section/Section.jsx';
+
 
 function Statistics(props) {
     const { good, neutral, bad, total, positivePercentage } = props;
@@ -16,3 +17,4 @@ function Statistics(props) {
 }
 
 export default Statistics
+

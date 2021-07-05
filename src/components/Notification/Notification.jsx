@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Container, Title} from './Notification.styled.js'
 
 function Notification({message}) {
@@ -10,3 +11,7 @@ function Notification({message}) {
 }
 
 export default Notification
+
+Notification.prototype = {
+    massage: PropTypes.string.isRequired,
+}

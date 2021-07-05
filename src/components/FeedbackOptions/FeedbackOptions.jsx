@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+
 import { Button, Container } from './FeedbackOptions.styled.js';
 import Section from '../Section/Section.jsx';
+
 function FeedbackOptions(props) {
     const { onLeaveFeedback } = props;
     return <Section title="Please leave feedback">
@@ -13,3 +15,4 @@ function FeedbackOptions(props) {
 }
 
 export default FeedbackOptions
+

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Title, Container } from './Section.styled.js';
 
 function Section({title, children}) {
@@ -11,3 +12,8 @@ function Section({title, children}) {
 }
 
 export default Section
+
+Section.prototype = {
+    title: PropTypes.string.isRequired,
+    children: PropTypes.node,
+}

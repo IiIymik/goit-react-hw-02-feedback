@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Statistics from '../Statistics/Statistics';
 import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
 import Notification from '../Notification/Notification';
@@ -8,7 +9,10 @@ export class Feedback extends Component {
         initialValue: 0,
     }
     static propTypes = {
-        // 
+        good: PropTypes.number,
+        neutral: PropTypes.number,
+        bad: PropTypes.number,
+        visible:PropTypes.bool,
     }
     state = {
         good: this.props.initialValue,
@@ -28,11 +32,20 @@ export class Feedback extends Component {
     changeVisible = () => {
         this.setState({visible: true})
     }
+
+    countTotalFeedback = () => {
+        const { good, neutral, bad} = this.state;
+        return good + bad + neutral;
+    }
+    countPositiveFeedbackPercentage = (totalSum) => {
+        const { good} = this.state;
+        return Math.round(good / totalSum * 100);
+    }
   
     render() {
         const { good, neutral, bad, visible} = this.state;
-        const totalSum = good + bad + neutral;
-        const positiveFeed = Math.round(good / totalSum * 100);
+        const totalSum = this.countTotalFeedback();
+        const positiveFeed = this.countPositiveFeedbackPercentage(totalSum);
     
         return (
             <div>
