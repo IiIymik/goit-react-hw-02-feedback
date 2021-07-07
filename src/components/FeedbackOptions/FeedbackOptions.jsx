@@ -3,13 +3,12 @@ import React from 'react';
 import { Button, Container } from './FeedbackOptions.styled.js';
 import Section from '../Section/Section.jsx';
 
-function FeedbackOptions(props) {
-    const { onLeaveFeedback } = props;
+function FeedbackOptions({ options , onLeaveFeedback}) {
     return <Section title="Please leave feedback">
         <Container>
-             <Button name="good" onClick={onLeaveFeedback}>Good</Button>
-                <Button name="neutral" onClick={onLeaveFeedback}>Neutral</Button>
-                <Button name="bad" onClick={onLeaveFeedback}>Bad</Button>
+            {options.map((nameBtn, index) => (
+                <Button key={index} name={nameBtn} type='button' onClick={onLeaveFeedback}>{nameBtn}</Button>
+            ))}
         </Container>
     </Section>
 }

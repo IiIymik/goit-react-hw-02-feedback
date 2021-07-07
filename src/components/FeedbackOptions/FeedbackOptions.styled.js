@@ -6,6 +6,7 @@ background-color: transparent;
 border: 2px solid;
 border-radius: 30%;
 outline: none;
+text-transform: capitalize ;
 &:not(:last-child){
     margin-right: 10px;
 }
